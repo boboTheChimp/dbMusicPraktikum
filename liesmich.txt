@@ -1,0 +1,62 @@
+MusicDB unter Windows für Zuhause
+=================================
+
+1) DB2 installieren
+2) Datenbank DBPrak erstellen
+3) Tabellen erstellen: db2 -tvf createMusicRelation.sql
+4) Bibliotheken kopieren: setenv.bat
+5) Eclipse installieren und Projekt importieren 
+6) VM-Argumente für MusicDBGraphicUI.java: -Djava.library.path=${workspace_loc:MusicDB}\lib\win;C:\Programme\IBM\SQLLIB\bin
+7) MusicDB starten: MusicDBGraphicUI oder MusicDBTextUI
+
+
+MusicDB unter Linux, Sun
+========================
+
+Hinweis: Bash-Shell benutzen: bash
+
+Zuhause:
+1a) DB2 installieren
+2a) Datenbank DBPrak erstellen
+
+Studentenpools:
+1-2b) Umgebung setzen: source ~db2lehre/sqllib/db2profile (nur in den Studentenpools)
+
+3) Tabellen erstellen: db2 -tvf createMusicRelation.sql
+4) Bibliotheken kopieren + Umgebung setzen: source setenv.sh
+5) Eclipse installieren und Projekt importieren
+6) MusicDB kompilieren: build.sh
+7) MusicDB starten: runGUI.sh oder runTUI.sh
+
+
+Probleme
+========
+
+Fehlerausgabe des Skriptes setenv.sh
+------------------------------------
+
+- Fehler
+  ": command not found
+   : command not found
+   : command not found
+   'ash: ./setenv.sh: line 14: syntax error near unexpected token `in
+   'ash: ./setenv.sh: line 14: `    case "$OSTYPE" in"
+- Lösung: Skriptdateien müssen ins UNIX-Format konvertiert werden: "dos2unix setenv.sh setenv.sh"
+
+- Fehler
+  ": bad interpreter: Datei oder Verzeichnis nicht gefunden"
+- Lösung: Skriptdateien müssen ins UNIX-Format konvertiert werden: "dos2unix setenv.sh setenv.sh" + "source setenv.sh" benutzen
+
+- Fehler
+  "no DB2DIR - source ./setenv.sh"
+- Lösung 1: "source ~db2lehre/sqllib/db2profile" vergessen
+- Lösung 2: "source setenv.sh" benutzen
+
+- Fehler
+  "MYPWD=/vol/home-vol3/[...]/MusicDB: Command not found.
+   MYPWD: Undefined variable."
+- Lösung: Bash-Shell benutzen
+
+- Fehler
+  "setenv.sh: line 23: AddRemoveString: command not found"
+- Lösung: Bash-Shell benutzen + "source setenv.sh" benutzen
